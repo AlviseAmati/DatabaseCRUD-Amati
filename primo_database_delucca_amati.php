@@ -11,7 +11,19 @@ if ($conn->connect_error)
 {
     die("Connection failed: " . $conn->connect_error);
 }
+if(isset($_GET['SELECT']))
+{
+    $sql = "SELECT * FROM DatabaseCRUD-Amati-Delucca";
+    $result = mysqli_query($conn, $sql);
 
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "id: " . $row["id"]. "   Nome: " . $row["nome"]. "   Cognome " . $row["cognome"]. "  email". $row["email"]. "  Telefono". $row["NumeroDiTelefono"]. "  Indirizzo". $row["indirizzo"]. "  Città". $row["città"]. "  CAP". $row["CAP"]. "  C.Fiscale". $row["CodiceFiscale"]." ";
+        }
+    } else {
+        echo "0 results";
+    }
+}
 if(isset($_GET['INSERT']))
 {
     $sql = "INSERT INTO DatabaseCRUD-Amati-Delucca (nome, cognome, email, NumeroDiTelefono, indirizzo, città, CAP, CodiceFiscale)
