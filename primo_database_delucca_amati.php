@@ -18,7 +18,7 @@ if(isset($_GET['SELECT']))
 
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
-            echo "id: " . $row["id"]. "   Nome: " . $row["nome"]. "   Cognome " . $row["cognome"]. "  email". $row["email"]. "  Telefono". $row["NumeroDiTelefono"]. "  Indirizzo". $row["indirizzo"]. "  Città". $row["città"]. "  CAP". $row["CAP"]. "  C.Fiscale". $row["CodiceFiscale"]. "<br>";
+            echo "id: " . $row["id"]. "   Nome: " . $row["nome"]. "   Cognome " . $row["cognome"]. "  email". $row["email"]. "  Telefono". $row["numerotelefono"]. "  Indirizzo". $row["indirizzo"]. "  Città". $row["citta"]. "  CAP". $row["CAP"]. "  C.Fiscale". $row["CodiceFiscale"]. "<br>";
         }
     } else {
         echo "0 results";
