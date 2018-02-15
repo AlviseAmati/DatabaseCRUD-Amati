@@ -1,11 +1,11 @@
 <?php
-$servername = "127.0.0.1";
-$username = "username";
-$password = "password";
-$dbname = "DatabaseCRUD-Amati-Delucca";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "scuolalavoro";
 
 // Create connection
-$conn = new mysqli($servername, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error)
 {
@@ -13,12 +13,12 @@ if ($conn->connect_error)
 }
 if(isset($_GET['SELECT']))
 {
-    $sql = "SELECT * FROM DatabaseCRUD-Amati-Delucca";
+    $sql = "SELECT * FROM databaseamatidelucca";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
-            echo "id: " . $row["id"]. "   Nome: " . $row["nome"]. "   Cognome " . $row["cognome"]. "  email". $row["email"]. "  Telefono". $row["NumeroDiTelefono"]. "  Indirizzo". $row["indirizzo"]. "  Città". $row["città"]. "  CAP". $row["CAP"]. "  C.Fiscale". $row["CodiceFiscale"]." ";
+            echo "id: " . $row['id']. "   ";
         }
     } else {
         echo "0 results";
@@ -26,7 +26,7 @@ if(isset($_GET['SELECT']))
 }
 if(isset($_GET['INSERT']))
 {
-    $sql = "INSERT INTO DatabaseCRUD-Amati-Delucca (nome, cognome, email, NumeroDiTelefono, indirizzo, città, CAP, CodiceFiscale)
+    $sql = "INSERT INTO databaseamatidelucca (nome, cognome, email)
     VALUES ('John', 'Doe', 'john@example.com')";
 
     if ($conn->query($sql) === TRUE) {
@@ -38,7 +38,7 @@ if(isset($_GET['INSERT']))
 
 if(isset($_GET['DELETE']))
 {
-    $sql = "DELETE FROM DatabaseCRUD-Amati-Delucca WHERE id=3";
+    $sql = "DELETE FROM databaseamatidelucca WHERE id=3";
 
     if ($conn->query($sql) === TRUE) {
         echo "Record deleted successfully";
@@ -49,7 +49,7 @@ if(isset($_GET['DELETE']))
 
 if(isset($_GET['UPDATE']))
 {
-    $sql = "UPDATE DatabaseCRUD-Amati-Delucca SET lastname='Doe' WHERE id=2";
+    $sql = "UPDATE databaseamatidelucca SET lastname='Doe' WHERE id=2";
 
     if ($conn->query($sql) === TRUE) {
         echo "Record updated successfully";
