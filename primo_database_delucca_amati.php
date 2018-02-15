@@ -1,11 +1,11 @@
 <?php
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "username";
 $password = "password";
-$dbname = "myDB";
+$dbname = "DatabaseCRUD-Amati-Delucca";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $dbname);
 // Check connection
 if ($conn->connect_error)
 {
