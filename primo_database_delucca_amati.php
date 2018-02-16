@@ -15,14 +15,43 @@ if(isset($_GET['SELECT']))
 {
     $sql = "SELECT * FROM databaseamatidelucca";
     $result = mysqli_query($conn, $sql);
-
+    echo "<thead>";
+    echo " <tr>";
+    echo " <th>id</th>";
+    echo "<th>Nome</th>";
+    echo "<th>Email</th>";
+    echo "<th>Telefono</th>";
+    echo "<th>Indirizzo</th>";
+    echo "<th>Città</th>";
+    echo "<th>CUP</th>";
+    echo "<th>Codice Fiscale</th>";
+    echo "</tr>";
+    echo "</thead>";
     if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "id: " . $row["id"]. "   Nome: " . $row["nome"]. "   Cognome " . $row["cognome"]. "  email". $row["email"]. "  Telefono". $row["numerotelefono"]. "  Indirizzo". $row["indirizzo"]. "  Città". $row["citta"]. "  CAP". $row["CAP"]. "  C.Fiscale". $row["CodiceFiscale"]. "<br>";
+        while($row = mysqli_fetch_assoc($result))
+        {
+            echo "id: " . $row["id"]. "   Nome: " . $row["nome"]. "   Cognome " . $row["cognome"]. "  email". $row["email"]. "  Telefono". $row["numerotelefono"].  "  Indirizzo". $row["indirizzo"].  "  Città". $row["citta"]. "  CAP". $row["CAP"]."  C.Fiscale". $row["CodiceFiscale"]. "<br>";
+            echo " <div class='container'> ";
+            echo "<table class='table'>";
+            echo "<tbody>";
+            echo "<tr>";
+            echo " <td>". $row["nome"]."</td>";
+            echo " <td>". $row["cognome"]."</td>";
+            echo " <td>". $row["email"]. "</td>";
+            echo " <td>". $row["numerotelefono"]. "</td>";
+            echo " <td>". $row["indirizzo"]. "</td>";
+            echo " <td>". $row["citta"]."</td>";
+            echo " <td>". $row["CAP"]."</td>";
+            echo " <td>". $row["CodiceFiscale"]."</td>";
+            echo "</tr>";
+            echo "</tbody>";
+            echo "</table>";
+            echo "</div>";
         }
     } else {
         echo "0 results";
     }
+
 }
 if(isset($_GET['INSERT']))
 {
