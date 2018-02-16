@@ -1,3 +1,13 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+
+
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -15,9 +25,10 @@ if(isset($_GET['SELECT']))
 {
     $sql = "SELECT * FROM databaseamatidelucca";
     $result = mysqli_query($conn, $sql);
+    echo "<table class='table table-hoover'>";
     echo "<thead>";
-    echo " <tr>";
-    echo " <th>id</th>";
+    echo "<tr>";
+    echo "<th>id</th>";
     echo "<th>Nome</th>";
     echo "<th>Email</th>";
     echo "<th>Telefono</th>";
@@ -30,24 +41,39 @@ if(isset($_GET['SELECT']))
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result))
         {
-            echo "id: " . $row["id"]. "   Nome: " . $row["nome"]. "   Cognome " . $row["cognome"]. "  email". $row["email"]. "  Telefono". $row["numerotelefono"].  "  Indirizzo". $row["indirizzo"].  "  Città". $row["citta"]. "  CAP". $row["CAP"]."  C.Fiscale". $row["CodiceFiscale"]. "<br>";
+            $nome = $row['nome'];
+            $cognome = $row['cognome'];
+            $numerotelefono = $row['numerotelefono'];
+            $citta = $row['citta'];
+            $CAP = $row['CAP'];
+            $CodiceFiscale = $row['CodiceFiscale'];
+            $id = $row['id'];
             echo " <div class='container'> ";
-            echo "<table class='table'>";
             echo "<tbody>";
             echo "<tr>";
-            echo " <td>". $row["nome"]."</td>";
-            echo " <td>". $row["cognome"]."</td>";
-            echo " <td>". $row["email"]. "</td>";
-            echo " <td>". $row["numerotelefono"]. "</td>";
-            echo " <td>". $row["indirizzo"]. "</td>";
-            echo " <td>". $row["citta"]."</td>";
-            echo " <td>". $row["CAP"]."</td>";
-            echo " <td>". $row["CodiceFiscale"]."</td>";
+            echo " <td>".$nome."</td>";
+            echo " <td>".$cognome."</td>";
+            echo " <td>".$numerotelefono."</td>";
+            echo " <td>".$citta."</td>";
+            echo " <td>".$CAP."</td>";
+            echo " <td>".$CodiceFiscale."</td>";
+            echo
+              "<td > 
+                <form action='Delete.php' method='get'> 
+                <input type='hidden' value=$id>
+                <input type='submit' value='delete'> </form>
+               </td>";
+            echo
+              "<td> 
+                <form action='Update.php' method='get'> 
+                <input type='hidden' value=$id>
+                <input type='submit' value='update'> </form>
+               </td>";
             echo "</tr>";
             echo "</tbody>";
-            echo "</table>";
             echo "</div>";
         }
+        echo "</table>";
     } else {
         echo "0 results";
     }
@@ -55,14 +81,7 @@ if(isset($_GET['SELECT']))
 }
 if(isset($_GET['INSERT']))
 {
-    $sql = "INSERT INTO databaseamatidelucca (nome, cognome, email)
-    VALUES ('John', 'Doe', 'john@example.com')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    echo "<form action='Insert.php' method='GET'>";
 }
 
 if(isset($_GET['DELETE']))
@@ -88,3 +107,8 @@ if(isset($_GET['UPDATE']))
 }
 
 $conn->close();
+?>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
