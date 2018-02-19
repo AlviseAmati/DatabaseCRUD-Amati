@@ -52,14 +52,15 @@ if (mysqli_num_rows($result) > 0) {
         echo
           "<td > 
             <form action='Delete.php' method='get'> 
-            <input type='hidden' value='$nome' name='nome'>
-            <input type='hidden' value='$cognome' name='cognome'>
-            <input type='hidden' value='$email' name='email'>
+             <input type='hidden' value='$id' name='righe'>
             <input type='submit' value='delete'> </form>
            </td>";
         echo
           "<td> 
             <form action='Update.php' method='get'> 
+            <input type='hidden' value='$nome' name='nome'>
+            <input type='hidden' value='$cognome' name='cognome'>
+            <input type='hidden' value='$email' name='email'>
             <input type='hidden' value='$id' name='righe'>
             <input type='submit' value='update'> </form>
            </td>";
@@ -70,20 +71,12 @@ if (mysqli_num_rows($result) > 0) {
     echo "</table>";
 }
 
-if(isset($_GET['DELETE']))
+if(isset($_GET['delete']))
 {
     if ($conn->query($sql) === TRUE)
         echo "<form action='Delete.php' method='GET'>";
     else
         echo "Error deleting record: " . $conn->error;
-}
-
-if(isset($_GET['UPDATE']))
-{
-    if ($conn->query($sql) === TRUE)
-        echo "<form action='Update.php' method='GET'>";
-    else
-        echo "Error updating record: " . $conn->error;
 }
 
 $conn->close();
