@@ -14,7 +14,6 @@
     </div>
     <input type="submit">
 </form>
-
 </html>
 <?php
 $servername = "localhost";
@@ -30,5 +29,5 @@ if(isset($_GET['nome'])&&isset($_GET['cognome'])&&isset($_GET['email']))
     $email = $_GET['email'];
     $sql = "INSERT INTO databaseamatidelucca (nome, cognome, email) VALUES ('$nome', '$cognome', '$email')";
     mysqli_query($conn, $sql);
-    echo "<form action='primo_database_delucca_amati.html' method='post'>";
+    include 'primo_database_delucca_amati.php';
 }
