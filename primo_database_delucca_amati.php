@@ -41,13 +41,14 @@ if(isset($_GET['SELECT']))
             echo " <div class='container'> ";
             echo "<tbody>";
             echo "<tr>";
+            echo " <td>".$id."</td>";
             echo " <td>".$nome."</td>";
             echo " <td>".$cognome."</td>";
             echo " <td>".$email."</td>";
             echo
               "<td > 
                 <form action='Delete.php' method='get'> 
-                <input type='hidden' value=$id>
+                <input type='hidden' value='$id' name='righe'>
                 <input type='submit' value='delete'> </form>
                </td>";
             echo
@@ -73,17 +74,17 @@ if(isset($_GET['INSERT']))
 
 if(isset($_GET['DELETE']))
 {
-    $sql = "DELETE FROM databaseamatidelucca WHERE id=3";
-
-    if ($conn->query($sql) === FALSE)
+    if ($conn->query($sql) === TRUE)
+        echo "<form action='Delete.php' method='GET'>";
+    else
         echo "Error deleting record: " . $conn->error;
 }
 
 if(isset($_GET['UPDATE']))
 {
-    $sql = "UPDATE databaseamatidelucca SET lastname='Doe' WHERE id=2";
-
-    if ($conn->query($sql) === FALSE)
+    if ($conn->query($sql) === TRUE)
+        echo "<form action='Update.php' method='GET'>";
+    else
         echo "Error updating record: " . $conn->error;
 }
 
