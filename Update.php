@@ -69,6 +69,6 @@ if(isset($_POST['nome'])&&(isset($_POST['cognome'])&&(isset($_POST['email'])))) 
         echo "Error updating record: " . $conn->error;
     }
 
-header('Location: http://localhost:63342/DatabaseCRUD-Amati-Delucca/index.php?');
+header('Location: http://192.168.245.17/DatabaseCRUD-Amati-Delucca/index.php?');
     $conn->close();
 }

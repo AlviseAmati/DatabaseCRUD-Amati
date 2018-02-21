@@ -18,5 +18,5 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error deleting record: " . $conn->error;
 }
-header('Location: http://127.0.0.1/DatabaseCRUD-Amati-Delucca/index.php');
+header('Location: http://192.168.245.17/DatabaseCRUD-Amati-Delucca/index.php');
 $conn->close();
