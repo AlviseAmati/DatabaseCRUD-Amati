@@ -72,7 +72,7 @@ VALUES ('$nome', '$cognome', '$email')";
         }
         echo "</table>";
         echo "</div>";
-        header('Location: http://localhost:63342/SQLBartoliniCejka/index.php?');
+        header('Location: http://127.0.0.1/DatabaseCRUD-Amati-Delucca/index.php?');
         $conn->close();
     //}
 }
