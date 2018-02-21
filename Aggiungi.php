@@ -29,7 +29,7 @@ if(isset($_POST['nome'])&&(isset($_POST['cognome'])&&(isset($_POST['email'])))) 
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "sqlbartolinicejka";
+    $dbname = "databaseAmatiDelucca";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
@@ -40,8 +40,8 @@ if(isset($_POST['nome'])&&(isset($_POST['cognome'])&&(isset($_POST['email'])))) 
     $email = $_POST['email'];
 
     /*$sql = "SELECT * FROM $registro WHERE username = '".$nome."'";
-    $result = sqlbartolinicejka_query($sql);
-    $num_righe = sqlbartolinicejka_num_rows($result);
+    $result = databaseAmatiDelucca_query($sql);
+    $num_righe = databaseAmatiDelucca_num_rows($result);
     if ($num_righe<1){
         echo "Il nome utente non esiste";
     }else{

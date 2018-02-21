@@ -49,7 +49,7 @@
 $servername = "localhost";
 $username="root";
 $password="";
-$dbname="sqlbartolinicejka";
+$dbname="databaseAmatiDelucca";
 
 $conn = new mysqli($servername,$username,$password,$dbname);
 
