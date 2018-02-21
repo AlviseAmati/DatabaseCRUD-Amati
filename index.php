@@ -44,37 +44,41 @@
         </tr>
         </thead>
 </div>
+<script language="Javascript" type="text/javascript">
+        function Mostra()
+        {
+            <?php
+            $servername = "localhost";
+            $username="root";
+            $password="";
+            $dbname="databaseamatidelucca";
 
-<?php
-$servername = "localhost";
-$username="root";
-$password="";
-$dbname="databaseamatidelucca";
+            $conn = new mysqli($servername,$username,$password,$dbname);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "SELECT * FROM registro";
 
-$conn = new mysqli($servername,$username,$password,$dbname);
+            $result=$conn->query($sql);
+            while($row=$result->fetch_assoc()){
+                echo "<tr>";
+                echo "<td>".$row['Id']."</td>";
+                echo "<td>".$row['Nome']."</td>";
+                echo "<td>".$row['Cognome']."</td>";
+                echo "<td>".$row['Email']."</td>";
+                $riga = $row['Id'];
+                echo "<td><form action='Update.php' method='get'><button type=\"submit\" class=\"btn btn-primary\"><input type='hidden' name='identificator' value='$riga'>Update</button></form></td>";
+                echo "<td><form action='Delete.php' method='get'><button type=\"submit\" class=\"btn btn-danger\"><input type='hidden' name='identificator' value='$riga'>Delete</button></form></td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            echo"</div>";
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT * FROM registro";
+            $conn->close();
+            ?>
+        }
+</script>
 
-$result=$conn->query($sql);
-    while($row=$result->fetch_assoc()){
-    echo "<tr>";
-    echo "<td>".$row['Id']."</td>";
-    echo "<td>".$row['Nome']."</td>";
-    echo "<td>".$row['Cognome']."</td>";
-    echo "<td>".$row['Email']."</td>";
-    $riga = $row['Id'];
-    echo "<td><form action='Update.php' method='get'><button type=\"submit\" class=\"btn btn-primary\"><input type='hidden' name='identificator' value='$riga'>Update</button></form></td>";
-    echo "<td><form action='Delete.php' method='get'><button type=\"submit\" class=\"btn btn-danger\"><input type='hidden' name='identificator' value='$riga'>Delete</button></form></td>";
-    echo "</tr>";
-    }
-echo "</table>";
-echo"</div>";
-
-$conn->close();
-?>
     <br>
     <br>
 <input type="search" id="mySearch" placeholder="Cerca...">
