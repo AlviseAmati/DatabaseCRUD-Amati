@@ -38,7 +38,7 @@ if(isset($_POST['nome'])&&(isset($_POST['cognome'])&&(isset($_POST['email'])))) 
         die("Connection failed: " . $conn->connect_error);
     }
     $nome = $_POST['nome'];
-    $cognome = $_POST['cgnome'];
+    $cognome = $_POST['cognome'];
     $email = $_POST['email'];
 
     $punto = count(explode( '.', $email )) - 1;
