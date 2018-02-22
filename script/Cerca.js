@@ -1,13 +1,19 @@
-function Cerca(parola,elementi) {
-for(var i=0;i<elementi.length;i++)
-{
-    elementi[i].style.backgroundColor="white";
-}
-for(var i=0;i<elementi.length;i++)
-{
-    if(elementi[i].innerHTML.toUpperCase().search(parola.toUpperCase())!=-1)
+function Cerca() {
+    var stringa = document.getElementById('mySearch').value.toUpperCase();
+    var table=document.getElementById('tabella');
+    var celle=table.getElementsByTagName('td');
+    for(var i=0;i<celle.length;i++){
+        celle[i].style.backgroundColor="white";
+    }
+
+    if(stringa!="")
     {
-        elementi[i].style.backgroundColor = "lightblue";
+    for(var i=0;i<celle.length;i++)
+    {
+        if(celle[i].innerHTML.toUpperCase().search(stringa)!=-1 && celle[i].innerHTML.search("<")==-1)
+        {
+            celle[i].style.backgroundColor = "lightblue";
+        }
     }
 }
 }

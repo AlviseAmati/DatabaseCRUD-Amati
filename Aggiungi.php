@@ -7,72 +7,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-
-    <br>
-    <div class="container col-xs-8 col-lg-3">
-        <form method="post" action="">
-            <label for="nm">Nome:</label>
-            <input type="text" class="form-control" name="nome" id="name" required>
-            <label for="cnm">Cognome:</label>
-            <input type="text" class="form-control" name="cognome" id="cognome" required>
-            <label for="mail">Email:</label>
-            <input type="email" class="form-control" name="email" id="email" required>
-            <input type="submit" class="form-control" id="insert">
-        </form>
-        </div>
+<br>
+<div class="container col-xs-8 col-lg-3">
+    <form method="post" action="">
+        <label for="nm">Nome:</label>
+        <input type="text" class="form-control" name="nome" id="name" required>
+        <br>
+        <label for="cnm">Cognome:</label>
+        <input type="text" class="form-control" name="cognome" id="cognome" required>
+        <br>
+        <label for="mail">Email:</label>
+        <input type="email" class="form-control" name="email" id="email" required>
+        <br>
+        <input type="submit" class="form-control" id="insert" onClick="Mostra()">
+    </form>
     </div>
-
+</div>
 </body>
 <?php
 if(isset($_POST['nome'])&&(isset($_POST['cognome'])&&(isset($_POST['email'])))) {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "databaseAmatiDelucca";
+    $dbname = "databaseamatidelucca";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
     $nome = $_POST['nome'];
-    $cognome = $_POST['cognome'];
+    $cognome = $_POST['cgnome'];
     $email = $_POST['email'];
 
-    /*$sql = "SELECT * FROM $registro WHERE username = '".$nome."'";
-    $result = databaseAmatiDelucca_query($sql);
-    $num_righe = databaseAmatiDelucca_num_rows($result);
-    if ($num_righe<1){
-        echo "Il nome utente non esiste";
-    }else{
-        echo "Il nome utente esiste";
-    }
-
-    if ($result="0"){
-        echo "il nome utente non esiste";
-    }else{
-        echo "il nome utente esiste";
-    }*/
     $punto = count(explode( '.', $email )) - 1;
-        if($punto != 1)
-        {
-            echo 'Indirizzo email corretto';
-        }
-        else
-        {
-        echo 'Indirizzo email errato';
-        }
-        $sql = "INSERT INTO registro ( Nome, Cognome, Email)
-VALUES ('$nome', '$cognome', '$email')";
 
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-        echo "</table>";
-        echo "</div>";
-        header('Location: http://127.0.0.1/DatabaseCRUD-Amati-Delucca/index.php?');
-        $conn->close();
-    //}
+    $sql = "INSERT INTO registro ( Nome, Cognome, Email)
+    VALUES ('$nome', '$cognome', '$email')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    echo "</table>";
+    echo "</div>";
+    header('Location: index.php?');
+    $conn->close();
 }

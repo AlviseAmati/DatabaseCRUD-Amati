@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "databaseAmatiDelucca";
+$dbname = "databaseamatidelucca";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -18,5 +18,5 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error deleting record: " . $conn->error;
 }
-header('Location: http://127.0.0.1/DatabaseCRUD-Amati-Delucca/index.php');
+header('Location: index.php');
 $conn->close();

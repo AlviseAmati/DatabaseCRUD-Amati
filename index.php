@@ -9,9 +9,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="script/Cerca.js"></script>
     <style>
-        table, th, td {
-            border: 1px solid black;
-        }
         .button {
             background-color: #4CAF50;
             border: none;
@@ -28,12 +25,11 @@
 
 </head>
 <body>
-<table>
 <h3 align="center">Tabella SQL Amati-Delucca</h3>
 <div class="container">
-    <form action='Aggiungi.php' method='get'><button class="button">Aggiungi Record</button></form>
-    <div class="table table-hover" style="width:100%">
-        <thead>
+    <form action='Aggiungi.php' method='get'> <button class="button"  data-toggle="tooltip" data-placement="top" title="Clicca per aggiungere un record"> <span class="glyphicon glyphicon-plus"></span> Aggiungi </button> </form>
+    <table class="table table-hover" id="tabella">
+    <thead>
         <tr>
             <th>ID</th>
             <th>Nome</th>
@@ -44,45 +40,40 @@
         </tr>
         </thead>
 </div>
-<script language="Javascript" type="text/javascript">
-        function Mostra()
-        {
-            <?php
-            $servername = "localhost";
-            $username="root";
-            $password="";
-            $dbname="databaseamatidelucca";
 
-            $conn = new mysqli($servername,$username,$password,$dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "SELECT * FROM registro";
+<?php
+$servername = "localhost";
+$username="root";
+$password="";
+$dbname="databaseamatidelucca";
 
-            $result=$conn->query($sql);
-            while($row=$result->fetch_assoc()){
-                echo "<tr>";
-                echo "<td>".$row['Id']."</td>";
-                echo "<td>".$row['Nome']."</td>";
-                echo "<td>".$row['Cognome']."</td>";
-                echo "<td>".$row['Email']."</td>";
-                $riga = $row['Id'];
-                echo "<td><form action='Update.php' method='get'><button type=\"submit\" class=\"btn btn-primary\"><input type='hidden' name='identificator' value='$riga'>Update</button></form></td>";
-                echo "<td><form action='Delete.php' method='get'><button type=\"submit\" class=\"btn btn-danger\"><input type='hidden' name='identificator' value='$riga'>Delete</button></form></td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-            echo"</div>";
+$conn = new mysqli($servername,$username,$password,$dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$sql = "SELECT * FROM registro";
 
-            $conn->close();
-            ?>
-        }
-</script>
+$result=$conn->query($sql);
+while($row=$result->fetch_assoc()){
+    echo "<tr>";
+    echo "<td>".$row['Id']."</td>";
+    echo "<td>".$row['Nome']."</td>";
+    echo "<td>".$row['Cognome']."</td>";
+    echo "<td>".$row['Email']."</td>";
+    $riga = $row['Id'];
+    echo "<td><form action='Update.php' method='get'><button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Clicca per aggiornare questa riga\"><input type='hidden' name='identificator' value='$riga'>Update</button></form></td>";
+    echo "<td><form action='Delete.php' method='get'><button type=\"submit\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Clicca per eliminare questa riga\"><input type='hidden' name='identificator' value='$riga'>Delete</button></form></td>";
+    echo "</tr>";
+}
+echo "</table>";
+echo"</div>";
+
+$conn->close();
+?>
 
     <br>
     <br>
-<input type="search" id="mySearch" placeholder="Cerca...">
-<button onclick="Cerca(document.getElementById('mySearch').value,document.getElementsByTagName('td'));">Vai!</button>
+<input type="search"  onkeyup="Cerca(document.getElementById('mySearch'),document.getElementsByTagName('td'));" id="mySearch" placeholder="Cerca...">
 
 </div>
 </body>
