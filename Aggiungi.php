@@ -55,4 +55,6 @@ if(isset($_POST['nome'])&&(isset($_POST['cognome'])&&(isset($_POST['email'])))) 
     echo "</div>";
     header('Location: index.php?');
     $conn->close();
+
+    //}
 }
