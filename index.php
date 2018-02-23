@@ -22,9 +22,7 @@
             cursor: pointer;
         }
     </style>
-
 </head>
-<!-- alvsie-->
 <body>
 <h3 align="center">Tabella SQL Amati-Delucca</h3>
 <div class="container">
@@ -32,46 +30,36 @@
     <table class="table table-hover" id="tabella">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Cognome</th>
-            <th>Email</th>
-            <th>Modifica</th>
-            <th>Elimina</th>
+            <form action="OrdinamentoeMostra.php" method="get">
+                <th>ID</th>
+                <input type="button" name="id_crescente" value="cr">
+                <input type="button" name="id_decrescente" value="dc">
+            </form>
+
+            <form action="OrdinamentoeMostra.php" method="get">
+                <th>Nome</th>
+                <input type="button" name="nome_crescente" value="cr">
+                <input type="button" name="nome_decrescente" value="dc">
+            </form>
+
+            <form action="OrdinamentoeMostra.php" method="get">
+                <th>Cognome</th>
+                <input type="button" name="cognome_crescente" value="cr">
+                <input type="button" name="cognome_decrescente" value="dc">
+            </form>
+
+            <form action="OrdinamentoeMostra.php" method="get">
+                <th>Email</th>
+                <input type="button" name="email_crescente" value="cr">
+                <input type="button" name="email_decrescente" value="dc">
+            </form>
         </tr>
         </thead>
 </div>
 
 <?php
-$servername = "localhost";
-$username="root";
-$password="";
-$dbname="databaseamatidelucca";
 
-$conn = new mysqli($servername,$username,$password,$dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT * FROM registro";
-
-$result=$conn->query($sql);
-while($row=$result->fetch_assoc()){
-    echo "<tr>";
-    echo "<td>".$row['Id']."</td>";
-    echo "<td>".$row['Nome']."</td>";
-    echo "<td>".$row['Cognome']."</td>";
-    echo "<td>".$row['Email']."</td>";
-    $riga = $row['Id'];
-    echo "<td><form action='Update.php' method='get'><button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Clicca per aggiornare questa riga\"><input type='hidden' name='identificator' value='$riga'>Update</button></form></td>";
-    echo "<td><form action='Delete.php' method='get'><button type=\"submit\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Clicca per eliminare questa riga\"><input type='hidden' name='identificator' value='$riga'>Delete</button></form></td>";
-    echo "</tr>";
-}
-echo "</table>";
-echo"</div>";
-
-$conn->close();
 ?>
-
     <br>
     <br>
 <input type="search"  onkeyup="Cerca(document.getElementById('mySearch'),document.getElementsByTagName('td'));" id="mySearch" placeholder="Cerca...">
